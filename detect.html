@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Mudra Detection</title>
+
+  <!-- MediaPipe -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard">
+
+  <header class="topbar">
+    <h2>Live Mudra Detection</h2>
+    <span>Hold the mudra steady in front of the camera</span>
+  </header>
+
+  <div class="container">
+
+    <!-- LEFT: VIDEO -->
+    <div class="camera-card">
+      <video id="video" autoplay></video>
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- RIGHT: INFO -->
+    <div class="info-card">
+      <h3 id="mudra">Waiting...</h3>
+
+      <div class="info">
+        <p id="benefits"></p>
+        <p id="duration"></p>
+        <p id="viniyoga"></p>
+        <p id="shlokaDevanagari"></p>
+        <p id="shloka"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
