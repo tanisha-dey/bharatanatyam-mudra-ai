@@ -201,6 +201,28 @@ const mudraInfo = {
 };
 
 
+
+window.addEventListener("click", () => {
+  const audio = document.getElementById("bgSound");
+  if (audio && audio.paused) {
+    audio.volume = 0.1; // soft background
+    audio.volume = 0;
+audio.play();
+
+let v = 0;
+const fade = setInterval(() => {
+  if (v < 0.25) {
+    v += 0.02;
+    audio.volume = v;
+  } else {
+    clearInterval(fade);
+  }
+}, 200);
+
+  }
+}, { once: true });
+
+
 /* =========================
    VIDEO + CANVAS
    ========================= */
@@ -249,16 +271,14 @@ function landmarksToArray(landmarks) {
    ========================= */
 
 async function predictMudra(inputArray) {
-  const response = await fetch(
-    "https://bharatanatyam-mudra-api.onrender.com/predict",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ landmarks: inputArray })
-    }
-  );
+  const response = await fetch("http://127.0.0.1:8000/predict", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ landmarks: inputArray })
+  });
   return await response.json();
 }
+
 /* =========================
    STABILIZATION SETTINGS
    ========================= */
@@ -331,8 +351,7 @@ hands.onResults((results) => {
             maxCount = counts[m];
           }
         }
-
-        // only update UI if stable
+        
         if (maxCount >= 6) {
           document.getElementById("mudra").innerText =
             stableMudra + " (" + (result.confidence * 100).toFixed(1) + "%)";
@@ -351,6 +370,7 @@ hands.onResults((results) => {
           
           document.getElementById("shlokaDevanagari").innerText =
             "Shloka: " + (mudraInfo[stableMudra]?.shlokaDevanagari || "");
+
         }
       });
     }

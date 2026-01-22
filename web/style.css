@@ -290,6 +290,33 @@ canvas {
   line-height: 1.5;
 }
 
+
+/* ===============================
+   MUDRA GRID (4 PER ROW)
+   =============================== */
+
+.mudra-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Individual mudra cards */
+.mudra-card {
+  text-align: center;
+}
+
+.mudra-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+
 /* ===============================
    RESPONSIVE
    =============================== */
